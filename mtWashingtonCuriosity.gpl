@@ -1,0 +1,15 @@
+fn = 'mtWashingtonCuriosity.dat'
+
+hms(h , m, s) = 3600*h+60*m+s
+
+set xlabel 'Mt Washington Time (s)'
+set ylabel 'Outside race duration (s)'
+
+set title 'Correlating Mt Washington time with Half/10K times'
+
+set key below
+
+pl[0:][0:] \
+	fn u ( hms($2,$3,$4) ) : ( ($5+$6 > 0 ) ? hms($5,$6, $7) : 1/0) w p pt 7 tit 'Half Marathon',\
+	fn u ( hms($2,$3,$4) ) : ( ($8+$9 > 0 ) ? hms($8,$9,$10) : 1/0) w p pt 7 tit '10K',\
+	hms(1,31,33) tit 'Sash Santa HM'
